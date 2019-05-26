@@ -115,7 +115,6 @@
  
                 <p:commandLink update=":form:prodDetail" oncomplete="PF('prodDialog').show()" title="View Detail">
                     <h:outputText styleClass="ui-icon pi pi-search" style="margin:0 auto;" />
-                    <h:outputText styleClass="ui-icon pi pi-shopping-cart" action="" style="margin:0 auto;" />
                     <f:setPropertyActionListener value="#{prod}" target="#{basket.selectedProduct}" />
                 </p:commandLink>
             </h:panelGrid>
@@ -124,7 +123,7 @@
  
     <p:dialog header="Product Info" widgetVar="prodDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
         <p:outputPanel id="prodDetail" style="text-align:center;">
-            <p:panelGrid  columns="2" rendered="#{not empty catalog.selectedProduct}" columnClasses="label,value">
+            <p:panelGrid  columns="2" rendered="#{not empty basket.selectedProduct}" columnClasses="label,value">
                 <f:facet name="header">
                     <p:graphicImage name="img/#{basket.selectedProduct.photo}" width="300" height="200"/> 
                 </f:facet>
