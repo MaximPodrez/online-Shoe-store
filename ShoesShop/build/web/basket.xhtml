@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+	<title>Second Bar Header</title>
+        
+        <h:outputStylesheet library="css" name="header-second-bar.css"/>
+
+	<link rel="stylesheet" href="assets/demo.css"/>
+	<link rel="stylesheet" href="assets/header-second-bar.css"/>
+	<link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"/>
+    </h:head>
+    <h:body id = "hel">
+            <header class="header-two-bars">
+
+                <div class="header-first-bar">
+
+                        <div class="header-limiter">
+
+                                <h1><a href="mainPaige.xhtml">SHOES<span>STORE</span></a></h1>
+
+                                <nav>
+                                        <a href="catalog.xhtml">Catalog</a>
+                                        <a href="#" class="selected">Surveys</a>
+                                        <a href="#">Reports</a>
+                                        <a href="#">Roles</a>
+                                </nav>
+
+                                <a href="#" class="logout-button">Logout</a>
+                        </div>
+
+                </div>
+
+                <div class="header-second-bar">
+
+                        <div class="header-limiter">
+                                <h2><a href="#">Survey name</a></h2>
+
+                                <nav>
+                                        <a href="#"><i class="fa fa-comments-o"></i> Questions</a>
+                                        <a href="profile.xhtml"><i class="fa fa-user"></i> Profile</a>
+                                        <a href="basket.xhtml"><i class="fa fa-shopping-cart"></i> Basket</a>
+                                        <a href="#"><i class="fa fa-cogs"></i> Settings</a>
+                                </nav>
+
+                        </div>
+
+                </div>
+            </header>
+        
+            <style type="text/css"> 
+                /*demo*/
+                .ui-dataview-list .ui-dataview-row {
+                    border-bottom: 1px solid #A8A8A8;
+                    padding: 25px 10px;
+                    /* with the exported variables from Nova and Luna Themes*/
+                    border-bottom-color: var(--input-border-color, #A8A8A8);
+                }
+
+                .logo {
+                    width: 5%;
+                }
+                .detail {
+                    width: 85%;
+                    padding-left: 25px;
+                }
+            </style>
+ 
+        <h:form id="form"> <!--style="width:65%"-->
+            <p:growl id="growl" life="2000" />
+    <p:dataView var="prod" value="#{basket.products}" rows="12" paginator="true" rowsPerPageTemplate="6,12,16"
+                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                gridIcon="pi pi-th-large" listIcon="pi pi-bars">
+ 
+        <p:dataViewGridItem>
+            <p:panel header="#{prod.productPK.idProduct}" style="text-align:center">
+                <h:panelGrid columns="1" style="width:100%">
+                    <p:graphicImage name="img/#{prod.photo}"/> 
+ 
+                    <h:outputText value="#{prod.productPK.idBrend}" />
+ 
+                    <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail">
+                        <h:outputText styleClass="ui-icon pi pi-search" style="margin:0 auto;" />
+                        <f:setPropertyActionListener value="#{prod}" target="#{basket.selectedProduct}" />
+                    </p:commandLink>
+                </h:panelGrid>
+            </p:panel>
+        </p:dataViewGridItem>
+ 
+        <p:dataViewListItem>
+            <h:panelGrid columns="3" style="width:100%" columnClasses="logo,detail">
+                <p:graphicImage name="img/#{prod.photo}" width ="300" height ="200" /> 
+ 
+                <p:outputPanel>
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputText value="Id:" />
+                        <h:outputText value="#{prod.productPK.idProduct}" style="font-weight: bold"/>
+ 
+                        <h:outputText value="Name:" />
+                        <h:outputText value="#{prod.name}" style="font-weight: bold"/>
+ 
+                        <h:outputText value="Size:" />
+                        <h:outputText value="#{prod.size}" style="font-weight: bold"/>
+                    </h:panelGrid>
+                </p:outputPanel>
+ 
+                <p:commandLink update=":form:prodDetail" oncomplete="PF('prodDialog').show()" title="View Detail">
+                    <h:outputText styleClass="ui-icon pi pi-search" style="margin:0 auto;" />
+                    <h:outputText styleClass="ui-icon pi pi-shopping-cart" action="" style="margin:0 auto;" />
+                    <f:setPropertyActionListener value="#{prod}" target="#{basket.selectedProduct}" />
+                </p:commandLink>
+            </h:panelGrid>
+        </p:dataViewListItem>
+    </p:dataView>
+ 
+    <p:dialog header="Product Info" widgetVar="prodDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="prodDetail" style="text-align:center;">
+            <p:panelGrid  columns="2" rendered="#{not empty catalog.selectedProduct}" columnClasses="label,value">
+                <f:facet name="header">
+                    <p:graphicImage name="img/#{basket.selectedProduct.photo}" width="300" height="200"/> 
+                </f:facet>
+ 
+                <h:outputText value="Name" />
+                <h:outputText value="#{basket.selectedProduct.name}" />
+ 
+                <h:outputText value="Brand" />
+                <h:outputText value="#{basket.selectedProduct.productPK.idBrend}" />
+          
+                <h:outputText value="Size:" />
+                <h:outputText value="#{basket.selectedProduct.size}" />
+                
+                <h:outputText value="Season" />
+                <h:outputText value="#{basket.selectedProduct.season}" />
+                
+                <h:outputText value="Price" />
+                <h:outputText value="$#{basket.selectedProduct.price}" />
+
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>
+</h:form>
+        
+        
+            <footer class="footer-distributed">
+
+			<div class="footer-left">
+
+				<h3>Shoes<span>shop</span></h3>
+
+				<p class="footer-links">
+					<a href="#">Home</a>
+					·
+					<a href="#">Blog</a>
+					·
+					<a href="#">Pricing</a>
+					·
+					<a href="#">About</a>
+					·
+					<a href="#">Faq</a>
+					·
+					<a href="#">Contact</a>
+				</p>
+
+				<p class="footer-company-name">MaximPodrez © 2019</p>
+			</div>
+
+			<div class="footer-center">
+
+				<div>
+					<i class="fa fa-map-marker"></i>
+					<p><span>10 Revolution Street</span> Minsk, Belarus</p>
+				</div>
+
+				<div>
+					<i class="fa fa-phone"></i>
+					<p>+375-33-123-45-67</p>
+				</div>
+
+				<div>
+					<i class="fa fa-envelope"></i>
+					<p><a href="mailto:maksimka.podrez@mail.ru">maksimka.podrez@mail.ru</a></p>
+				</div>
+
+			</div>
+
+			<div class="footer-right">
+
+				<p class="footer-company-about">
+					<span>About the company</span>
+					We are new guys in the internet who sells only original shoes.
+				</p>
+
+				<div class="footer-icons">
+
+					<a href="https://www.facebook.com/profile.php?id=100005395696270"><i class="fa fa-facebook"></i></a>
+					<a href="https://www.instagram.com/maxim_podrez07/"><i class="fa fa-instagram"></i></a>
+					<a href="https://vk.com/m.podrez"><i class="fa fa-vk"></i></a>
+					<a href="https://github.com/MaximPodrez"><i class="fa fa-github"></i></a>
+
+				</div>
+
+			</div>
+
+		</footer>
+
+    </h:body>
+</html>
+

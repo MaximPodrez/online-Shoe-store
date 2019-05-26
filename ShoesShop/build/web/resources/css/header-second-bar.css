@@ -11,7 +11,7 @@
 
 #hel{
     margin: 0;
-    background: azure;
+    background: #e7e7e7;
 }
 
 a:hover {
@@ -205,7 +205,7 @@ footer{
 
 @media (max-height:800px){
 	footer { position: static; }
-	header { padding-top:40px; }
+	//header { padding-top:40px; }
 }
 
 .footer-distributed{
@@ -217,7 +217,7 @@ footer{
 	font: bold 16px sans-serif;
 
 	padding: 55px 50px;
-	margin-top: 80px;
+	//margin-top: 80px;
 }
 
 .footer-distributed .footer-left,

@@ -7,6 +7,7 @@
 package beans;
 
 import com.query.DataQuery;
+import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -19,15 +20,17 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean(name = "login")
 @SessionScoped
-public class LoginController {
+public class LoginController implements Serializable {
 
-     private String username;
+    private String username;
     private String password;
     @EJB
     private DataQuery query=new DataQuery();
     
     public String loginControl()
     {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Hello", null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
         if(query.loginControl(username, password))
             return "mainPaige.xhtml?faces-redirect=true";
         return "wrongLogin.xhtml?faces-redirect=true";

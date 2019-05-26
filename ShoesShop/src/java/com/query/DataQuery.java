@@ -43,9 +43,7 @@ public class DataQuery {
         try{
             Login l;
            
-            Query q= em.createNamedQuery("Login.control", Login.class);
-          
-            q.setParameter("username", username).setParameter("password", password);
+            Query q= em.createNamedQuery("Login.control", Login.class).setParameter("username", username).setParameter("password", password);
            
             l=(Login)q.getSingleResult();
          
