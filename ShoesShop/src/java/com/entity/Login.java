@@ -43,6 +43,17 @@ public class Login implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "username")
     private String username;
+    @Size(min = 1, max = 255)
+    @Column(name = "email")
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
     @Size(max = 255)
     @Column(name = "password")
     private String password;
@@ -101,6 +112,9 @@ public class Login implements Serializable {
         if (!Objects.equals(this.username, other.username)) {
             return false;
         }
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
         if (!Objects.equals(this.password, other.password)) {
             return false;
         }
@@ -109,6 +123,8 @@ public class Login implements Serializable {
         }
         return true;
     }
+
+    
 
     @Override
     public String toString() {

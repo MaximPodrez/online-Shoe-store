@@ -74,6 +74,7 @@ public class DataQuery {
                     Login log = new Login();
                     log.setUsername(username);
                     log.setPassword(password);
+                    log.setEmail(email);
                     em.persist(log);
                     return true;
                 }
@@ -93,6 +94,12 @@ public class DataQuery {
         {
            return false;
         }
+    }
+    
+    public String email(String username)
+    {
+        Login l = em.createNamedQuery("Login.findByUsername", Login.class).setParameter("username", username).getSingleResult();
+        return l.getEmail();
     }
     
 }

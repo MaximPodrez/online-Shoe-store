@@ -9,11 +9,8 @@ package beans;
 import com.query.DataQuery;
 import java.io.Serializable;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
 /**
  *
@@ -33,6 +30,11 @@ public class LoginController implements Serializable {
         if(query.loginControl(username, password))
             return "mainPaige.xhtml?faces-redirect=true";
         return "wrongLogin.xhtml?faces-redirect=true";
+    }
+    
+    public String email()
+    {
+        return query.email(username);
     }
     
     public String registration()

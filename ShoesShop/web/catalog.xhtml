@@ -10,7 +10,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-	<title>Second Bar Header</title>
+	<title>catalog</title>
         
         <h:outputStylesheet library="css" name="header-second-bar.css"/>
 
@@ -29,13 +29,13 @@
                                 <h1><a href="mainPaige.xhtml">SHOES<span>STORE</span></a></h1>
 
                                 <nav>
-                                        <a href="#">Catalog</a>
-                                        <a href="#" class="selected">Surveys</a>
-                                        <a href="#">Reports</a>
-                                        <a href="#">Roles</a>
+                                        <a href="catalog.xhtml">Catalog</a>
+                                        <a href="mainPaige.xhtml" class="selected">Main</a>
+                                        <a href="basket.xhtml">basket</a>
+                                        <a href="profile.xhtml">Profile</a>
                                 </nav>
 
-                                <a href="#" class="logout-button">Logout</a>
+                                <a href="login.xhtml" class="logout-button">Logout</a>
                         </div>
 
                 </div>
@@ -43,7 +43,7 @@
                 <div class="header-second-bar">
 
                         <div class="header-limiter">
-                                <h2><a href="#">Survey name</a></h2>
+                                <h2><a href="#">Maxim</a></h2>
 
                                 <nav>
                                         <a href="#"><i class="fa fa-comments-o"></i> Questions</a>
@@ -87,7 +87,7 @@
  
                     <h:outputText value="#{prod.idBrend}" />
  
-                    <p:commandLink update=":form:prodDetail" oncomplete="PF('prodDialog').show()" title="View Detail">
+                    <p:commandLink update=":form:prodDetail" oncomplete="PF('prodDialog').show()" title="View more info">
                         <h:outputText styleClass="ui-icon pi pi-search" style="margin:0 auto;" />
                         <f:setPropertyActionListener value="#{prod}" target="#{catalog.selectedProduct}" />
                     </p:commandLink>
@@ -97,7 +97,7 @@
  
         <p:dataViewListItem>
             <h:panelGrid columns="3" style="width:100%" columnClasses="logo,detail">
-                <p:graphicImage name="img/#{prod.photo}" width ="300" height ="150" /> 
+                <p:graphicImage name="img/#{prod.photo}" width ="300" height ="200" /> 
  
                 <p:outputPanel>
                     <h:panelGrid columns="2" cellpadding="5">
@@ -112,7 +112,7 @@
                     </h:panelGrid>
                 </p:outputPanel>
                 
-                <p:commandLink update=":form:prodDetail" oncomplete="PF('prodDialog').show()" title="View Detail">
+                <p:commandLink update=":form:prodDetail" oncomplete="PF('prodDialog').show()" title="View more info">
                     <h:outputText styleClass="ui-icon pi pi-search" style="margin:0 auto;" />
                     <f:setPropertyActionListener value="#{prod}" target="#{catalog.selectedProduct}" />
                 </p:commandLink>
@@ -144,7 +144,7 @@
                 <h:outputText value="$#{catalog.selectedProduct.price}" />
                 
                 <h:outputText value="Add to basket" />
-                <p:commandLink action="#{catalog.addToBasket}" title="View Detail">
+                <p:commandLink action="#{catalog.addToBasket}" title="Add to basket">
                     <h:outputText styleClass="ui-icon pi pi-shopping-cart" style="margin:0 auto;" />
                 </p:commandLink>
 
