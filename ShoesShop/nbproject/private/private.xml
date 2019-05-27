@@ -3,21 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/web/catalog.xhtml</file>
+            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/src/java/com/entity/Login.java</file>
+            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/src/java/com/entity/Product.java</file>
+            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/src/java/com/query/DataQuery.java</file>
             <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/src/java/beans/BasketBean.java</file>
             <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/web/basket.xhtml</file>
-            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/src/java/com/query/CatalogEJB.java</file>
-            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/web/mainPaige.xhtml</file>
-            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/web/WEB-INF/web.xml</file>
-            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/src/java/com/entity/Login.java</file>
-            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/web/catalog.xhtml</file>
-            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/web/profile.xhtml</file>
-            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/src/java/com/entity/Brend.java</file>
-            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/src/java/com/entity/OrderokPK.java</file>
+            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/src/conf/persistence.xml</file>
             <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/src/java/beans/CatalogBean.java</file>
+            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/src/java/com/query/CatalogEJB.java</file>
             <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/src/java/com/entity/Orderok.java</file>
-            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/web/login.xhtml</file>
-            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/web/resources/css/header-second-bar.css</file>
-            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/src/java/beans/LoginController.java</file>
         </group>
     </open-files>
 </project-private>

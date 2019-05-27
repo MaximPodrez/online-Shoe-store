@@ -6,8 +6,8 @@
 
 package com.query;
 
+import com.entity.Login;
 import com.entity.Orderok;
-import com.entity.OrderokPK;
 import com.entity.Product;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,54 +30,83 @@ public class CatalogEJB {
     
     public List<Product> products()
     {
-       Product product = new Product();
        List<Product> k = em.createNamedQuery("Product.findAll", Product.class).getResultList();
-       /*List<Prod> list = new ArrayList();
-        for (Product k1 : k) {
-            int id = k1.getProductPK().getIdProduct();
-            String brand = k1.getProductPK().getIdBrend();
-            int size = k1.getSize();
-            String name = k1.getName();
-            String season = k1.getSeason();
-            int price = k1.getPrice();
-            String photo = k1.getPhoto();
-            list.add(new Prod(id, brand, size, name, season, price, photo));
-        }*/
        return k;
     }
     
     public List<Product> basketProducts(String username)
     {
-       List<Orderok> k = em.createNamedQuery("Orderok.findByIdLogin", Orderok.class).setParameter("idLogin", username).getResultList();
-       List<Integer> list;
-       list = new ArrayList();
-       for (Orderok k1 : k) {
-           list.add(k1.getOrderokPK().getIdProduct());
-       }
-       List<Product> basketList;
-       basketList = new ArrayList();
+       Login log = em.createNamedQuery("Login.findByUsername", Login.class).setParameter("username", username).getSingleResult();
+       List<Orderok> list;
+       List<Product> basketList = new ArrayList();
+       list = log.getOrderCollection();
        for(int i = 0; i < list.size(); i++)
-           basketList.add(em.createNamedQuery("Product.findByIdProduct", Product.class).setParameter("idProduct", list.get(i)).getSingleResult());
+           basketList.add(list.get(i).getProduct());
+       
+       
+       //List<Orderok> k = em.createNamedQuery("Orderok.findByIdLogin", Orderok.class).setParameter("idLogin", username).getResultList();
+       //List<Integer> list;
+       //list = new ArrayList();
+       //for (Orderok k1 : k) {
+       //    list.add(k1.getOrderokPK().getIdProduct());
+       //}
+       //basketList = new ArrayList();
+       //for(int i = 0; i < list.size(); i++)
+       //    basketList.add(em.createNamedQuery("Product.findByIdProduct", Product.class).setParameter("idProduct", list.get(i)).getSingleResult());
        return basketList;
     }
     
-    public void addToBasket(int id, String username)
+    public void delete(Product product, String username)
     {
-        //Product prod = new Product();
-        //Query q= em.createNamedQuery("Orderok.findByIdProduct", Orderok.class).setParameter("idProduct", id);
-        List<Orderok> k = em.createNamedQuery("Orderok.findByIdProduct", Orderok.class).setParameter("idProduct", id).getResultList();
-        
-        //List<Orderr> prod = q.getResultList();
+        //em.createQuery("delete from orderok where id_product = " + product.getProductPK().getIdProduct()).executeUpdate();
+        Query query = em.createNamedQuery("Orderok.removeOrder");
+        query.setParameter("product", product);
+        query.executeUpdate();
+        Login log = em.createNamedQuery("Login.findByUsername", Login.class).setParameter("username", username).getSingleResult();
+        List<Orderok> list;
+        list = log.getOrderCollection();
+        for(int i = 0; i < list.size(); i++)
+        {
+            if(log.getOrderCollection().get(i).getProduct().getName().equals(product.getName()) && log.getOrderCollection().get(i).getProduct().getSizzze() == product.getSizzze())
+                log.getOrderCollection().remove(i);
+        }
+    }
+    
+    public void addToBasket(Product product, String username)
+    {
+        List<Orderok> k = em.createNamedQuery("Orderok.findByProduct", Orderok.class).setParameter("product", product).getResultList();
+        int p = 0;
+        Login log = em.createNamedQuery("Login.findByUsername", Login.class).setParameter("username", username).getSingleResult();
+        for(int i = 0; i < log.getOrderCollection().size(); i++)
+        {
+            if(log.getOrderCollection().get(i).getProduct().getName().equals(product.getName()) && log.getOrderCollection().get(i).getProduct().getSizzze() == product.getSizzze()) {
+                p++;
+                break;
+            }
+        }
             
-        if(k.isEmpty())
+        if(p == 0)
         {
             Orderok order = new Orderok();
-            OrderokPK orderPK = new OrderokPK();
-            orderPK.setIdLogin(username);
-            orderPK.setIdProduct(id);
-            order.setOrderokPK(orderPK);
+            //Login log = em.createNamedQuery("Login.findByUsername", Login.class).setParameter("username", username).getSingleResult();
+            //order.setLogin((Login)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("login"));
+            //order.setProduct((Product)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("product"));
+            //OrderokPK orderPK = new OrderokPK();
+            //em.persist(orderPK);
+            //order.setPK(orderPK);
             order.setCount(1);
+            order.setLogin(log);
+            order.setProduct(product);
             em.persist(order);
+            
+            
         }
+    }
+    
+    public void update(Product product, String username)
+    {
+        Login log = em.createNamedQuery("Login.findByUsername", Login.class).setParameter("username", username).getSingleResult();
+        Orderok order = em.createNamedQuery("Orderok.findByProduct", Orderok.class).setParameter("product", product).getSingleResult();
+        log.getOrderCollection().add(order);
     }
 }

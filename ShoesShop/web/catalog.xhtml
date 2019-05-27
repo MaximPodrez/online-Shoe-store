@@ -75,20 +75,19 @@
                 }
             </style>
  
-        <h:form id="form"> <!--style="width:65%"-->
-            <p:growl id="growl" life="2000" />
+        <h:form id="form"> <!--style="width:65%"-->         
     <p:dataView var="prod" value="#{catalog.products}" rows="12" paginator="true" rowsPerPageTemplate="6,12,16"
                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                 gridIcon="pi pi-th-large" listIcon="pi pi-bars">
  
         <p:dataViewGridItem>
-            <p:panel header="#{prod.productPK.idProduct}" style="text-align:center">
+            <p:panel header="#{prod.idProduct}" style="text-align:center">
                 <h:panelGrid columns="1" style="width:100%">
                     <p:graphicImage name="img/#{prod.photo}"/> 
  
-                    <h:outputText value="#{prod.productPK.idBrend}" />
+                    <h:outputText value="#{prod.idBrend}" />
  
-                    <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail">
+                    <p:commandLink update=":form:prodDetail" oncomplete="PF('prodDialog').show()" title="View Detail">
                         <h:outputText styleClass="ui-icon pi pi-search" style="margin:0 auto;" />
                         <f:setPropertyActionListener value="#{prod}" target="#{catalog.selectedProduct}" />
                     </p:commandLink>
@@ -98,18 +97,18 @@
  
         <p:dataViewListItem>
             <h:panelGrid columns="3" style="width:100%" columnClasses="logo,detail">
-                <p:graphicImage name="img/#{prod.photo}" width ="300" height ="200" /> 
+                <p:graphicImage name="img/#{prod.photo}" width ="300" height ="150" /> 
  
                 <p:outputPanel>
                     <h:panelGrid columns="2" cellpadding="5">
                         <h:outputText value="Id:" />
-                        <h:outputText value="#{prod.productPK.idProduct}" style="font-weight: bold"/>
+                        <h:outputText value="#{prod.idProduct}" style="font-weight: bold"/>
  
                         <h:outputText value="Name:" />
                         <h:outputText value="#{prod.name}" style="font-weight: bold"/>
  
                         <h:outputText value="Size:" />
-                        <h:outputText value="#{prod.size}" style="font-weight: bold"/>
+                        <h:outputText value="#{prod.sizzze}" style="font-weight: bold"/>
                     </h:panelGrid>
                 </p:outputPanel>
                 
@@ -133,10 +132,10 @@
                 <h:outputText value="#{catalog.selectedProduct.name}" />
  
                 <h:outputText value="Brand" />
-                <h:outputText value="#{catalog.selectedProduct.productPK.idBrend}" />
+                <h:outputText value="#{catalog.selectedProduct.brend.name}" />
           
                 <h:outputText value="Size:" />
-                <h:outputText value="#{catalog.selectedProduct.size}" />
+                <h:outputText value="#{catalog.selectedProduct.sizzze}" />
                 
                 <h:outputText value="Season" />
                 <h:outputText value="#{catalog.selectedProduct.season}" />
@@ -145,8 +144,8 @@
                 <h:outputText value="$#{catalog.selectedProduct.price}" />
                 
                 <h:outputText value="Add to basket" />
-                <p:commandLink id="mess" action="#{catalog.addToBasket}" title="View Detail">
-                    <h:outputText styleClass="ui-icon pi pi-shopping-cart" action="#{catalog.addToBasket}" style="margin:0 auto;" />
+                <p:commandLink action="#{catalog.addToBasket}" title="View Detail">
+                    <h:outputText styleClass="ui-icon pi pi-shopping-cart" style="margin:0 auto;" />
                 </p:commandLink>
 
             </p:panelGrid>

@@ -8,13 +8,16 @@ package beans;
 
 import com.entity.Product;
 import com.query.CatalogEJB;
+import java.io.IOException;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 
@@ -24,7 +27,7 @@ import javax.faces.context.FacesContext;
  */
 
 @ManagedBean(name = "basket")
-@SessionScoped
+@ViewScoped
 public class BasketBean {
     private List<Product> products;
     private Product selectedProduct;
@@ -36,6 +39,13 @@ public class BasketBean {
     @PostConstruct
     public void init() {
         products = catalogEJB.basketProducts(loginController.getUsername());
+    }
+    
+    public void delete() throws IOException
+    {
+        catalogEJB.delete(selectedProduct, loginController.getUsername());
+        products = catalogEJB.basketProducts(loginController.getUsername());
+        FacesContext.getCurrentInstance().getExternalContext().redirect("basket.xhtml");
     }
 
     public List<Product> getProducts() {

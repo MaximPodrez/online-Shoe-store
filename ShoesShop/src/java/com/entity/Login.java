@@ -7,12 +7,17 @@
 package com.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -41,12 +46,22 @@ public class Login implements Serializable {
     @Size(max = 255)
     @Column(name = "password")
     private String password;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "login")
+    private List<Orderok> orderCollection;
 
     public Login() {
     }
 
     public Login(String username) {
         this.username = username;
+    }
+
+    public List<Orderok> getOrderCollection() {
+        return orderCollection;
+    }
+
+    public void setOrderCollection(List<Orderok> orderCollection) {
+        this.orderCollection = orderCollection;
     }
 
     public String getUsername() {
@@ -65,21 +80,31 @@ public class Login implements Serializable {
         this.password = password;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (username != null ? username.hashCode() : 0);
-        return hash;
-    }
+//    @Override
+//    public int hashCode() {
+//        int hash = 7;
+//        hash = 53 * hash + Objects.hashCode(this.username);
+//        hash = 53 * hash + Objects.hashCode(this.password);
+//        hash = 53 * hash + Objects.hashCode(this.orderCollection);
+//        return hash;
+//    }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Login)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        Login other = (Login) object;
-        if ((this.username == null && other.username != null) || (this.username != null && !this.username.equals(other.username))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Login other = (Login) obj;
+        if (!Objects.equals(this.username, other.username)) {
+            return false;
+        }
+        if (!Objects.equals(this.password, other.password)) {
+            return false;
+        }
+        if (!Objects.equals(this.orderCollection, other.orderCollection)) {
             return false;
         }
         return true;
@@ -87,7 +112,8 @@ public class Login implements Serializable {
 
     @Override
     public String toString() {
-        return "com.entity.Login[ username=" + username + " ]";
+        return "Login{" + "username=" + username + ", password=" + password + ", orderCollection=" + orderCollection + '}';
     }
+    
     
 }

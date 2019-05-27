@@ -33,8 +33,8 @@
                                         <a href="#">Reports</a>
                                         <a href="#">Roles</a>
                                 </nav>
-
-                                <a href="#" class="logout-button">Logout</a>
+                                
+                                <a href="login.xhtml" class="logout-button" >logout</a>
                         </div>
 
                 </div>
@@ -47,7 +47,7 @@
                                 <nav>
                                         <a href="#"><i class="fa fa-comments-o"></i> Questions</a>
                                         <a href="profile.xhtml"><i class="fa fa-user"></i> Profile</a>
-                                        <a href="#"><i class="fa fa-shopping-cart"></i> Basket</a>
+                                        <a href="basket.xhtml"><i class="fa fa-shopping-cart"></i> Basket</a>
                                         <a href="#"><i class="fa fa-cogs"></i> Settings</a>
                                 </nav>
 
@@ -59,6 +59,17 @@
             <p:galleria value="#{imagesView.images}" var="image" panelWidth="1200" panelHeight="790" showCaption="true">
                 <p:graphicImage name="img/#{image}" alt="Image Description for #{image}" width ="1200" height="790" title="#{image}"/>
             </p:galleria>
+        
+        <p:dialog header="Info" widgetVar="Dialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="prodDetail" style="text-align:center;">
+            <p:panelGrid  columns="2" rendered="#{not empty catalog.selectedProduct}" columnClasses="label,value">
+                
+                <h:outputText value="Do you want to exit?" />
+                <h:commandButton value="Yes" action ="#{mainPaige.logOut}" />
+
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>
 
             <footer class="footer-distributed">
 

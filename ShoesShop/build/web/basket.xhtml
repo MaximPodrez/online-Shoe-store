@@ -82,11 +82,11 @@
                 gridIcon="pi pi-th-large" listIcon="pi pi-bars">
  
         <p:dataViewGridItem>
-            <p:panel header="#{prod.productPK.idProduct}" style="text-align:center">
+            <p:panel header="#{prod.idProduct}" style="text-align:center">
                 <h:panelGrid columns="1" style="width:100%">
                     <p:graphicImage name="img/#{prod.photo}"/> 
  
-                    <h:outputText value="#{prod.productPK.idBrend}" />
+                    <h:outputText value="#{prod.idBrend}" />
  
                     <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail">
                         <h:outputText styleClass="ui-icon pi pi-search" style="margin:0 auto;" />
@@ -103,13 +103,13 @@
                 <p:outputPanel>
                     <h:panelGrid columns="2" cellpadding="5">
                         <h:outputText value="Id:" />
-                        <h:outputText value="#{prod.productPK.idProduct}" style="font-weight: bold"/>
+                        <h:outputText value="#{prod.idProduct}" style="font-weight: bold"/>
  
                         <h:outputText value="Name:" />
                         <h:outputText value="#{prod.name}" style="font-weight: bold"/>
  
                         <h:outputText value="Size:" />
-                        <h:outputText value="#{prod.size}" style="font-weight: bold"/>
+                        <h:outputText value="#{prod.sizzze}" style="font-weight: bold"/>
                     </h:panelGrid>
                 </p:outputPanel>
  
@@ -117,6 +117,8 @@
                     <h:outputText styleClass="ui-icon pi pi-search" style="margin:0 auto;" />
                     <f:setPropertyActionListener value="#{prod}" target="#{basket.selectedProduct}" />
                 </p:commandLink>
+                <p:growl id="growl" life="2000" />
+                <p:commandButton value="delete" id="ajax" update="growl" action="#{basket.delete}" style="margin-right:20px;" styleClass="ui-priority-primary" />
             </h:panelGrid>
         </p:dataViewListItem>
     </p:dataView>
@@ -132,10 +134,10 @@
                 <h:outputText value="#{basket.selectedProduct.name}" />
  
                 <h:outputText value="Brand" />
-                <h:outputText value="#{basket.selectedProduct.productPK.idBrend}" />
+                <h:outputText value="#{basket.selectedProduct.brend.name}" />
           
                 <h:outputText value="Size:" />
-                <h:outputText value="#{basket.selectedProduct.size}" />
+                <h:outputText value="#{basket.selectedProduct.sizzze}" />
                 
                 <h:outputText value="Season" />
                 <h:outputText value="#{basket.selectedProduct.season}" />
@@ -143,6 +145,10 @@
                 <h:outputText value="Price" />
                 <h:outputText value="$#{basket.selectedProduct.price}" />
 
+                <h:outputText value="Delete"/>
+                <p:commandLink action="#{basket.delete()}" title="View Detail">
+                    <h:outputText styleClass="ui-icon pi pi-times" style="margin:0 auto;" />
+                </p:commandLink>
             </p:panelGrid>
         </p:outputPanel>
     </p:dialog>

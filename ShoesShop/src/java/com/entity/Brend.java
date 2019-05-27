@@ -7,14 +7,18 @@
 package com.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -29,13 +33,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Brend.findAll", query = "SELECT b FROM Brend b"),
     @NamedQuery(name = "Brend.findByName", query = "SELECT b FROM Brend b WHERE b.name = :name"),
     @NamedQuery(name = "Brend.findByCountry", query = "SELECT b FROM Brend b WHERE b.country = :country"),
-    @NamedQuery(name = "Brend.findByPhoto", query = "SELECT b FROM Brend b WHERE b.photo = :photo")})
+    @NamedQuery(name = "Brend.findByPhoto", query = "SELECT b FROM Brend b WHERE b.photo = :photo"),
+    @NamedQuery(name = "Brend.findByIdBrend", query = "SELECT b FROM Brend b WHERE b.idBrend = :idBrend")})
 public class Brend implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @Size(max = 45)
     @Column(name = "name")
     private String name;
     @Size(max = 45)
@@ -44,12 +46,27 @@ public class Brend implements Serializable {
     @Size(max = 45)
     @Column(name = "photo")
     private String photo;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id_brend")
+    private Integer idBrend;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "brend")
+    private Collection<Product> productCollection;
+
+    public Collection<Product> getProductCollection() {
+        return productCollection;
+    }
+
+    public void setProductCollection(Collection<Product> productCollection) {
+        this.productCollection = productCollection;
+    }
 
     public Brend() {
     }
 
-    public Brend(String name) {
-        this.name = name;
+    public Brend(Integer idBrend) {
+        this.idBrend = idBrend;
     }
 
     public String getName() {
@@ -76,10 +93,18 @@ public class Brend implements Serializable {
         this.photo = photo;
     }
 
+    public Integer getIdBrend() {
+        return idBrend;
+    }
+
+    public void setIdBrend(Integer idBrend) {
+        this.idBrend = idBrend;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (name != null ? name.hashCode() : 0);
+        hash += (idBrend != null ? idBrend.hashCode() : 0);
         return hash;
     }
 
@@ -90,7 +115,7 @@ public class Brend implements Serializable {
             return false;
         }
         Brend other = (Brend) object;
-        if ((this.name == null && other.name != null) || (this.name != null && !this.name.equals(other.name))) {
+        if ((this.idBrend == null && other.idBrend != null) || (this.idBrend != null && !this.idBrend.equals(other.idBrend))) {
             return false;
         }
         return true;
@@ -98,7 +123,7 @@ public class Brend implements Serializable {
 
     @Override
     public String toString() {
-        return "com.entity.Brend[ name=" + name + " ]";
+        return "com.entity.Brend[ idBrend=" + idBrend + " ]";
     }
     
 }

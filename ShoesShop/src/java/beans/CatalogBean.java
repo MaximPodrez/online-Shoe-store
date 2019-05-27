@@ -49,10 +49,9 @@ public class CatalogBean {
     
     public void addToBasket() throws IOException
     {
-        catalogEJB.addToBasket(selectedProduct.getProductPK().getIdProduct(), loginController.getUsername());
+        catalogEJB.addToBasket(selectedProduct, loginController.getUsername());
+        catalogEJB.update(selectedProduct, loginController.getUsername());
         FacesContext.getCurrentInstance().getExternalContext().redirect("catalog.xhtml");
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Hello", null);
-        FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
     public List<Product> getProducts() {
