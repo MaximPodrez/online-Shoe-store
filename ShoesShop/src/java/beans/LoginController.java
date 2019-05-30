@@ -7,6 +7,7 @@
 package beans;
 
 import com.query.DataQuery;
+import java.io.IOException;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -24,6 +25,16 @@ public class LoginController implements Serializable {
 
     private String username;
     private String password;
+    private String password1;
+    private String email;
+
+    public String getPassword1() {
+        return password1;
+    }
+
+    public String getEmail() {
+        return email;
+    }
     @EJB
     private DataQuery query=new DataQuery();
     
@@ -34,7 +45,13 @@ public class LoginController implements Serializable {
         return "wrongLogin.xhtml?faces-redirect=true";
     }
     
-    public String email()
+    public void registrat() throws IOException
+    {
+        if(query.registrControl(username, password, password1, email))
+            FacesContext.getCurrentInstance().getExternalContext().redirect("profile.xhtml");
+    }
+    
+    public String eml()
     {
         return query.email(username);
     }
@@ -59,5 +76,12 @@ public class LoginController implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
+    public void setPassword1(String password1) {
+        this.password1 = password1;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

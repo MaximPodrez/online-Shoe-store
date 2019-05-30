@@ -44,7 +44,14 @@ public class BasketBean {
     public void delete() throws IOException
     {
         catalogEJB.delete(selectedProduct, loginController.getUsername());
-        products = catalogEJB.basketProducts(loginController.getUsername());
+        //products = catalogEJB.basketProducts(loginController.getUsername());
+        FacesContext.getCurrentInstance().getExternalContext().redirect("basket.xhtml");
+    }
+    
+    public void delete(Product product) throws IOException
+    {
+        catalogEJB.delete(product, loginController.getUsername());
+        //products = catalogEJB.basketProducts(loginController.getUsername());
         FacesContext.getCurrentInstance().getExternalContext().redirect("basket.xhtml");
     }
 

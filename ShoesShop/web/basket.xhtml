@@ -102,14 +102,16 @@
  
                 <p:outputPanel>
                     <h:panelGrid columns="2" cellpadding="5">
-                        <h:outputText value="Id:" />
-                        <h:outputText value="#{prod.idProduct}" style="font-weight: bold"/>
- 
                         <h:outputText value="Name:" />
                         <h:outputText value="#{prod.name}" style="font-weight: bold"/>
+                        
+                        <h:outputText value="Price" />
+                        <h:outputText value="$#{prod.price}" style="font-weight: bold"/>
  
                         <h:outputText value="Size:" />
                         <h:outputText value="#{prod.sizzze}" style="font-weight: bold"/>
+                        
+                        <p:commandButton value="Delete"  action="#{basket.delete(prod)}"/>
                     </h:panelGrid>
                 </p:outputPanel>
  

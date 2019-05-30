@@ -44,7 +44,7 @@ public class CommentBean {
         else
         {   
             commentEJB.add(comment, loginController.getUsername());
-            FacesContext.getCurrentInstance().getExternalContext().redirect("info.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("review.xhtml");
         }
     }
     

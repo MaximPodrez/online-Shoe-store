@@ -53,6 +53,13 @@ public class CatalogBean {
         //catalogEJB.update(selectedProduct, loginController.getUsername());
         FacesContext.getCurrentInstance().getExternalContext().redirect("catalog.xhtml");
     }
+    
+    public void addToBasket(Product prod) throws IOException
+    {
+        catalogEJB.addToBasket(prod, loginController.getUsername());
+        //catalogEJB.update(selectedProduct, loginController.getUsername());
+        FacesContext.getCurrentInstance().getExternalContext().redirect("catalog.xhtml");
+    }
 
     public List<Product> getProducts() {
         return products;
