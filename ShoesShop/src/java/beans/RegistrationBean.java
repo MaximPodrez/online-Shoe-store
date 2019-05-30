@@ -6,13 +6,17 @@
 
 package beans;
 
+import com.entity.Login;
 import com.query.DataQuery;
+import java.io.IOException;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -28,11 +32,10 @@ public class RegistrationBean implements Serializable{
     @EJB
     private DataQuery query;
     
-    public String registrat()
+    public void registrat() throws IOException
     {
         if(query.registrControl(username, password, password1, email))
-            return "profile.xhtml?faces-redirect=true";
-        return "wrongRegistration.xhtml?faces-redirect=true";
+            FacesContext.getCurrentInstance().getExternalContext().redirect("profile.xhtml");
     }
 
     public String getUsername() {

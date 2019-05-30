@@ -7,7 +7,6 @@
 package com.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Basic;
@@ -46,25 +45,27 @@ public class Login implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "email")
     private String email;
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
     @Size(max = 255)
     @Column(name = "password")
     private String password;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "login")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "login", orphanRemoval = true)
     private List<Orderok> orderCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "login", orphanRemoval = true)
+    private List<Comment> commentCollection;
 
     public Login() {
     }
 
     public Login(String username) {
         this.username = username;
+    }
+    
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public List<Orderok> getOrderCollection() {
@@ -90,6 +91,16 @@ public class Login implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public List<Comment> getCommentCollection() {
+        return commentCollection;
+    }
+
+    public void setCommentCollection(List<Comment> commentCollection) {
+        this.commentCollection = commentCollection;
+    }
+    
+    
 
 //    @Override
 //    public int hashCode() {
@@ -121,15 +132,11 @@ public class Login implements Serializable {
         if (!Objects.equals(this.orderCollection, other.orderCollection)) {
             return false;
         }
-        return true;
+        return Objects.equals(this.commentCollection, other.commentCollection);
     }
-
-    
 
     @Override
     public String toString() {
-        return "Login{" + "username=" + username + ", password=" + password + ", orderCollection=" + orderCollection + '}';
+        return "Login{" + "username=" + username + ", email=" + email + ", password=" + password + ", orderCollection=" + orderCollection + ", commentCollection=" + commentCollection + '}';
     }
-    
-    
 }

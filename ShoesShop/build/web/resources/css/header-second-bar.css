@@ -380,3 +380,45 @@ footer{
 #prof{
     position: fixed;
 }
+
+
+
+
+
+
+.service {
+    font-family: Arial, sans-serif;
+    font-size: 1.1rem;
+}
+
+.service * {
+    font-family: Arial, sans-serif;
+    font-size: 1.1rem;
+}
+
+.new-comment * {
+    margin: 5px;
+}
+
+.comment {
+    padding: 10px;
+    background: #dbdbdb;
+    margin-bottom: 10px;
+    border-radius: 20px
+}
+
+.comment-username {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px #fff solid;
+    padding-bottom: 7px;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+inputtextarea {
+	outline: none;
+	-moz-appearance: none;
+	border: 1px solid #999; 
+}

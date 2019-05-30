@@ -42,26 +42,15 @@ public class CatalogEJB {
        list = log.getOrderCollection();
        for(int i = 0; i < list.size(); i++)
            basketList.add(list.get(i).getProduct());
-       
-       
-       //List<Orderok> k = em.createNamedQuery("Orderok.findByIdLogin", Orderok.class).setParameter("idLogin", username).getResultList();
-       //List<Integer> list;
-       //list = new ArrayList();
-       //for (Orderok k1 : k) {
-       //    list.add(k1.getOrderokPK().getIdProduct());
-       //}
-       //basketList = new ArrayList();
-       //for(int i = 0; i < list.size(); i++)
-       //    basketList.add(em.createNamedQuery("Product.findByIdProduct", Product.class).setParameter("idProduct", list.get(i)).getSingleResult());
        return basketList;
     }
     
     public void delete(Product product, String username)
     {
         //em.createQuery("delete from orderok where id_product = " + product.getProductPK().getIdProduct()).executeUpdate();
-        Query query = em.createNamedQuery("Orderok.removeOrder");
-        query.setParameter("product", product);
-        query.executeUpdate();
+        //Query query = em.createNamedQuery("Orderok.removeOrder");
+        //query.setParameter("product", product);
+        //query.executeUpdate();
         Login log = em.createNamedQuery("Login.findByUsername", Login.class).setParameter("username", username).getSingleResult();
         List<Orderok> list;
         list = log.getOrderCollection();
@@ -88,17 +77,12 @@ public class CatalogEJB {
         if(p == 0)
         {
             Orderok order = new Orderok();
-            //Login log = em.createNamedQuery("Login.findByUsername", Login.class).setParameter("username", username).getSingleResult();
-            //order.setLogin((Login)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("login"));
-            //order.setProduct((Product)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("product"));
-            //OrderokPK orderPK = new OrderokPK();
-            //em.persist(orderPK);
-            //order.setPK(orderPK);
             order.setCount(1);
             order.setLogin(log);
             order.setProduct(product);
-            em.persist(order);
             
+            //em.persist(order);
+             log.getOrderCollection().add(order);
             
         }
     }

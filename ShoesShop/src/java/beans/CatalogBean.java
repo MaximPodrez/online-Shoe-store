@@ -50,7 +50,7 @@ public class CatalogBean {
     public void addToBasket() throws IOException
     {
         catalogEJB.addToBasket(selectedProduct, loginController.getUsername());
-        catalogEJB.update(selectedProduct, loginController.getUsername());
+        //catalogEJB.update(selectedProduct, loginController.getUsername());
         FacesContext.getCurrentInstance().getExternalContext().redirect("catalog.xhtml");
     }
 

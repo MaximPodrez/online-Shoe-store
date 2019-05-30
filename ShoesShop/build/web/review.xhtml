@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
 
 	<meta charset="utf-8"/>
@@ -54,32 +56,31 @@
 
             </div>
                 
-                <!--<style type="text/css">
-                        .ui-datalist {
-                            width:300px;
-                            margin-bottom: 20px;
-                        }
+                <div class="new-comment">
+                    <h:form>
+                        <p class="service" style="font-style: italic;">Write only truth...</p>
+                        <p:inputTextarea value="#{comment.comment}"/>
+                        <br/>  
+                        <p:commandButton styleClass="service" action="#{comment.addComment}" value="Submit" ajax="false">
+                        </p:commandButton>
+                    </h:form>
+                </div>
+                <h:panelGroup layout="block" styleClass="comments" id="comments">
+                    <ui:repeat value="#{comment.comments}" var="comm">
+                        <div class="comment">
+                            <p:growl id="growl" showDetail="true" sticky="true" />
+                            <div class="comment-username">
+                                <span class="service"><h:outputText styleClass="service" value="#{comm.login.username}" /></span>
+                            </div>
+                            <p>
+                                <h:outputText value="#{comm.comment}" />
+                            </p>
+                        </div>
+                    </ui:repeat>
+                </h:panelGroup>
+                
 
-                        .ui-datalist-item {
-                            padding:3px;
-                        }
-
-                        .paginated .ui-datalist-data {
-                            padding-left: 20px;
-                        }
-                </style>
- 
- 
-                <h:form id="form">
-                    <p:dataList value="" var="login" type="ordered">
-                        <f:facet name="header">
-                            Info about you
-                        </f:facet>
-                        
-                    </p:dataList>
-                </h:form>-->
-
-            <footer class="footer-distributed" id="prof">
+            <footer class="footer-distributed">
 
 			<div class="footer-left">
 

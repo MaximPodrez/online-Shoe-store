@@ -10,6 +10,7 @@
     </h:head>
     <h:body>
         <h:form class="login" width="500">
+             <p:growl id="growl" showDetail="true" sticky="false" life="2000"/>
             <p>
                 <label for="login">Логин:</label>
                 <h:inputText id="login" value="#{login.username}"/>
@@ -21,7 +22,7 @@
             </p>
 
             <p class="login-submit">
-                <h:commandButton type="submit" class="login-button" value="Login" action="#{login.loginControl}"/>
+                <h:commandButton type="submit" update="growl" class="login-button" value="Login" action="#{login.loginControl}"/>
             </p>
             <h:commandLink class="forgot-password" value="Регистрация" action="#{login.registration}"/>
         </h:form>

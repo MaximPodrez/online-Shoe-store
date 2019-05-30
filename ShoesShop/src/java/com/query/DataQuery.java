@@ -7,15 +7,12 @@
 package com.query;
 
 import com.entity.Login;
-import java.io.Serializable;
 import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -59,8 +56,18 @@ public class DataQuery {
     public boolean registrControl(String username, String password, String password1, String email)
     {        
         try{
-            Login l;
-           
+            
+            if(username.equals(""))
+            {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalidate name!"));
+                return false;
+            }
+            else if(password.equals(""))
+            {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalidate password!"));
+                return false;
+            }
+            
             Query q= em.createNamedQuery("Login.findByUsername", Login.class);
           
             q.setParameter("username", username);

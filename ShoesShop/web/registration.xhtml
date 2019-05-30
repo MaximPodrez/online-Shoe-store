@@ -10,6 +10,7 @@
     </h:head>
     <h:body>
         <h:form class="login-one">
+            <p:growl id="growl" showDetail="true" sticky="true" />
             <p>
                 <label class = "registr">Введите логин:</label>
                 <h:inputText id="login" value="#{registration.username}"/>
@@ -39,7 +40,7 @@
             <p class="register-submit">
                 
                 <div class = "center">
-                    <p:growl id="growl" life="2000" />
+                    
                     <p:commandButton value="Ajax Submit" id="ajax" update="growl" action="#{registration.registrat}" style="margin-right:20px;" styleClass="ui-priority-primary" />
                 </div>
             </p>
