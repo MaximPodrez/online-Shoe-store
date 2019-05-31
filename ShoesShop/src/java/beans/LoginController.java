@@ -10,7 +10,6 @@ import com.query.DataQuery;
 import java.io.IOException;
 import java.io.Serializable;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -27,22 +26,16 @@ public class LoginController implements Serializable {
     private String password;
     private String password1;
     private String email;
-
-    public String getPassword1() {
-        return password1;
-    }
-
-    public String getEmail() {
-        return email;
-    }
     @EJB
     private DataQuery query=new DataQuery();
     
-    public String loginControl()
+    public void loginControl() throws IOException
     {
         if(query.loginControl(username, password))
-            return "mainPaige.xhtml?faces-redirect=true";
-        return "wrongLogin.xhtml?faces-redirect=true";
+        {
+            email = query.email(username);
+            FacesContext.getCurrentInstance().getExternalContext().redirect("mainPaige.xhtml");
+        }
     }
     
     public void registrat() throws IOException
@@ -83,5 +76,13 @@ public class LoginController implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    
+    public String getPassword1() {
+        return password1;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }

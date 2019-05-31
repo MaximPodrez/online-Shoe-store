@@ -25,27 +25,31 @@ import javax.persistence.Query;
 @Stateless
 @LocalBean 
 public class DataQuery {
-    // EntityManagerFactory emf;
     @PersistenceContext(unitName = "ShoesShopPU")
     private EntityManager em;
-    
-    //public DataQuery() {
-      //  emf = Persistence.createEntityManagerFactory("MyFirstJSFApplicationPU");
-        //em = emf.createEntityManager();
-       // em.getTransaction().begin();
-    //}
     
     public boolean loginControl(String username, String password)
     {        
         try{
-            Login l;
+            List<Login> l;
            
-            Query q= em.createNamedQuery("Login.control", Login.class).setParameter("username", username).setParameter("password", password);
-           
-            l=(Login)q.getSingleResult();
+            Query q= em.createNamedQuery("Login.findByUsername", Login.class).setParameter("username", username);//.setParameter("password", password);
+            
+            l = q.getResultList();
+            
+            if(l.isEmpty())
+            {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Wrong username!"));
+                return false;
+            }
+            
+            if(!l.get(0).getPassword().equals(password))
+            {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Wrong password!"));
+                return false;
+            }
          
-            //List<Login> k = em.createNamedQuery("Login.control", Login.class).setParameter("username", username).setParameter("password", password).getResultList();
-            return l != null;
+            return true;
         }
         catch(Exception e)
         {

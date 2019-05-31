@@ -1,16 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
 
 	<meta charset="utf-8"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-	<title>Second Bar Header</title>
+	<title>Profile</title>
         
-        <h:outputStylesheet library="css" name="header-second-bar.css"/>
+        <h:outputStylesheet library="css" name="main-style.css"/>
 
 	<link rel="stylesheet" href="assets/demo.css"/>
 	<link rel="stylesheet" href="assets/header-second-bar.css"/>
@@ -51,33 +52,27 @@
                             </nav>
 
                     </div>
-
             </div>
-                
-                <!--<style type="text/css">
-                        .ui-datalist {
-                            width:300px;
-                            margin-bottom: 20px;
-                        }
-
-                        .ui-datalist-item {
-                            padding:3px;
-                        }
-
-                        .paginated .ui-datalist-data {
-                            padding-left: 20px;
-                        }
-                </style>
- 
- 
-                <h:form id="form">
-                    <p:dataList value="" var="login" type="ordered">
-                        <f:facet name="header">
-                            Info about you
-                        </f:facet>
-                        
-                    </p:dataList>
-                </h:form>-->
+            <h:form>    
+                <p:growl id="growl" showDetail="true" sticky="true" />
+                <table id = "TableFirstPage"> <!--вставляем таблицу -->
+                 <tr>
+                    <font style="font-size: 20px;">
+                    <h2 id = "msn"> Information about you: </h2>
+                        <ul>
+                            <li>  <b> Username: </b> #{login.username} </li><br/> 
+                            <li> <b> Your e-mail: </b> #{login.email} </li><br/>
+                            <li> <b> Count of products in basket: </b> #{basket.products.size()} </li>
+                        </ul>
+                    <td> <!--<img class="afff" title="Это я!" alt = "Моя фотография!" src="images/IMG_3624.jpg">--> </td> 
+                    </font>
+                    </tr>
+                </table>
+                <tr><font style="font-size: 20px;">
+                        <b>You can change your email:</b> <p:inputText value="#{profile.newEmail}"/>
+                        <p:commandButton value="Change" id="ajax" update="growl" action="#{profile.changeEmail}" styleClass="ui-priority-primary" />
+                    </font></tr>
+            </h:form>
 
             <footer class="footer-distributed" id="prof">
 

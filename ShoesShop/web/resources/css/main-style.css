@@ -427,3 +427,21 @@ inputtextarea {
 	-moz-appearance: none;
 	border: 1px solid #999; 
 }
+
+#TableFirstPage
+{
+    border: 0px;
+    margin-left: 200px;
+    margin-right: 200px;
+    background-color: rgba(0, 0, 0, 0);
+    width: 1200px;
+    height: 200px;
+}
+
+#msn
+{
+    font-size: 140%;
+    color: cornflowerblue;
+    height: 50px;
+    margin-left: 50px;
+}
