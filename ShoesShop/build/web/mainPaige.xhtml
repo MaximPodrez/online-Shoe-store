@@ -18,7 +18,7 @@
 	<link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css"/>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"/>
     </h:head>
-    <h:body id = "hel">
+    <h:body id = "hel1">
             <header class="header-two-bars">
 
                 <div class="header-first-bar">
@@ -30,7 +30,7 @@
                                <nav>
                                         <a href="catalog.xhtml">Catalog</a>
                                         <a href="mainPaige.xhtml" class="selected">Main</a>
-                                        <a href="basket.xhtml">basket</a>
+                                        <a href="basket.xhtml">Basket</a>
                                         <a href="profile.xhtml">Profile</a>
                                 </nav>
 
@@ -42,7 +42,7 @@
                 <div class="header-second-bar">
 
                         <div class="header-limiter">
-                                <h2><a href="#">Maxim</a></h2>
+                                <h2><a href="#">#{login.username}</a></h2>
 
                                 <nav>
                                         <a href="review.xhtml"><i class="fa fa-comments-o"></i> Reviews</a>
@@ -56,8 +56,8 @@
                 </div>
             </header>
 
-            <p:galleria value="#{imagesView.images}" var="image" panelWidth="1200" panelHeight="790" showCaption="true">
-                <p:graphicImage name="img/#{image}" alt="Image Description for #{image}" width ="1200" height="790" title="#{image}"/>
+            <p:galleria style=" margin-left: auto; margin-right: auto; margin-top: 30px;" value="#{mainPaige.images}" var="image" panelWidth="1200" panelHeight="790" showCaption="true">
+                <p:graphicImage name="img/#{image}" width ="1200" height="790" title="Hit of the season: #{mainPaige.validateName(image)}"/>
             </p:galleria>
         
         <p:dialog header="Info" widgetVar="Dialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
@@ -98,7 +98,7 @@
 
 				<div>
 					<i class="fa fa-map-marker"></i>
-					<p><span>10 Revolution Street</span> Minsk, Belarus</p>
+					<p><span>10 Oktyabrskaya Street</span> Minsk, Belarus</p>
 				</div>
 
 				<div>

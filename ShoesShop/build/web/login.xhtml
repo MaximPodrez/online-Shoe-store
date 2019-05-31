@@ -12,19 +12,19 @@
         <h:form class="login" width="500">
              <p:growl id="growl" showDetail="true" sticky="false" life="2000"/>
             <p>
-                <label for="login">Логин:</label>
+                <label for="login">Username:</label>
                 <h:inputText id="login" value="#{login.username}"/>
             </p>
            
             <p>
-                <label for="password">Пароль:</label>
-                <h:inputText id="password" value="#{login.password}"/>
+                <label for="password">Password:</label>
+                <p:password id="password" value="#{login.password}"/>
             </p>
 
             <p class="login-submit">
                 <h:commandButton type="submit" update="growl" class="login-button" value="Login" action="#{login.loginControl}"/>
             </p>
-            <h:commandLink class="forgot-password" value="Регистрация" action="#{login.registration}"/>
+            <h:commandLink class="forgot-password" value="Registration" action="#{login.registration}"/>
         </h:form>
     </h:body>
 </html>

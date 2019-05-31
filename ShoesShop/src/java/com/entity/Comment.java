@@ -36,6 +36,9 @@ public class Comment implements Serializable {
     @Size(max = 45)
     @Column(name = "comment")
     private String comment;
+    @Size(max = 45)
+    @Column(name = "datte")
+    private String datte;
     @JoinColumn(name = "id_user", referencedColumnName = "username")
     @ManyToOne(optional = false)
     private Login login;
@@ -48,9 +51,10 @@ public class Comment implements Serializable {
     public Comment() {
     }
     
-    public Comment(String comment, Login login) {
+    public Comment(String comment, Login login, String date) {
         this.comment = comment;
         this.login = login;
+        this.datte = date;
     }
 
     public String getComment() {
@@ -59,6 +63,14 @@ public class Comment implements Serializable {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public String getDatte() {
+        return datte;
+    }
+
+    public void setDatte(String datte) {
+        this.datte = datte;
     }
 
     public Login getLogin() {

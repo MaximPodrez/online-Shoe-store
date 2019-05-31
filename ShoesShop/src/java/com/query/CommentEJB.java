@@ -8,7 +8,11 @@ package com.query;
 
 import com.entity.Comment;
 import com.entity.Login;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -36,6 +40,11 @@ public class CommentEJB {
         Comment comm = new Comment();
         comm.setComment(comment);
         comm.setLogin(log);
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm"); 
+        comm.setDatte(format.format(calendar.getTime()));
         log.getCommentCollection().add(comm);
     }
 }

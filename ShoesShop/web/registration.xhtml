@@ -12,7 +12,7 @@
         <h:form class="login-one">
             <p:growl id="growl" showDetail="true" sticky="true" />
             <p>
-                <label class = "registr">Введите логин:</label>
+                <label class = "registr">Enter username:</label>
                 <h:inputText id="login" value="#{login.username}"/>
             </p>
            
@@ -22,12 +22,12 @@
             </p>
             
             <p>
-                <label class = "registr">Введите пароль:</label>
+                <label class = "registr">Enter password:</label>
                 <p:password id="feedback" value="#{login.password}" feedback = "true"/>
             </p>
             
             <p>
-                <label class = "registr">Введите пароль ещё раз:</label>
+                <label class = "registr">Enter password again:</label>
                 <h:inputSecret id="password1" value="#{login.password1}"/>
             </p>
 
@@ -41,7 +41,7 @@
                 
                 <div class = "center">
                     
-                    <p:commandButton value="Ajax Submit" id="ajax" update="growl" action="#{login.registrat}" style="margin-right:20px;" styleClass="ui-priority-primary" />
+                    <p:commandButton value="OK" id="ajax" update="growl" action="#{login.registrat}" style="margin-right:20px;" styleClass="ui-priority-primary" />
                 </div>
             </p>
         </h:form>

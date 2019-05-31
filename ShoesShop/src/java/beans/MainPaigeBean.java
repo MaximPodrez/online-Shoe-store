@@ -6,7 +6,11 @@
 
 package beans;
 
+import com.query.MainPaigeEJB;
 import java.io.IOException;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -23,6 +27,23 @@ import javax.faces.context.FacesContext;
 public class MainPaigeBean {
     @ManagedProperty(value = "#{login}")
     LoginController loginController;
+    private List<String> images;
+    @EJB
+    MainPaigeEJB mainPage;
+    
+    @PostConstruct
+    public void init() {
+        images = mainPage.images();
+    }
+    
+    public String validateName(String name)
+    {
+        return name.substring(0, name.indexOf("."));
+    }
+ 
+    public List<String> getImages() {
+        return images;
+    }
     
     public void logOut() throws IOException
     {
