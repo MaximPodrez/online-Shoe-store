@@ -26,7 +26,7 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class MainPaigeBean {
     @ManagedProperty(value = "#{login}")
-    LoginController loginController;
+    LoginBean loginController;
     private List<String> images;
     @EJB
     MainPaigeEJB mainPage;
@@ -52,11 +52,11 @@ public class MainPaigeBean {
         FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
     }
 
-    public LoginController getLoginController() {
+    public LoginBean getLoginController() {
         return loginController;
     }
 
-    public void setLoginController(LoginController loginController) {
+    public void setLoginController(LoginBean loginController) {
         this.loginController = loginController;
     }
 }

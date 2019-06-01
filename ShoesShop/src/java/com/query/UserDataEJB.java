@@ -24,7 +24,7 @@ import javax.persistence.Query;
 
 @Stateless
 @LocalBean 
-public class DataQuery {
+public class UserDataEJB {
     @PersistenceContext(unitName = "ShoesShopPU")
     private EntityManager em;
     
@@ -112,5 +112,4 @@ public class DataQuery {
         Login l = em.createNamedQuery("Login.findByUsername", Login.class).setParameter("username", username).getSingleResult();
         return l.getEmail();
     }
-    
 }

@@ -22,10 +22,11 @@ import javax.faces.context.FacesContext;
 @ViewScoped
 public class ProfileBean {
     @ManagedProperty(value = "#{login}")
-    LoginController loginController;
+    LoginBean loginController;
     @EJB
     ProfileEJB profile;
     private String newUsername;
+    private String lastPassword;
     private String newPassword;
     private String newEmail;
     
@@ -38,15 +39,17 @@ public class ProfileBean {
     
     public void changePassword() throws IOException
     {
-        profile.changeEmail(loginController.getUsername(), newPassword);
-        loginController.setPassword(newPassword);
-        FacesContext.getCurrentInstance().getExternalContext().redirect("profile.xhtml");
+        if(profile.changePassword(loginController.getUsername(), lastPassword, newPassword))
+        {
+            loginController.setPassword(newPassword);
+            FacesContext.getCurrentInstance().getExternalContext().redirect("profile.xhtml");
+        }
     }
     
     public void changeEmail() throws IOException
     {
-        profile.changeUsername(loginController.getUsername(), newEmail);
-        loginController.setUsername(newEmail);
+        profile.changeEmail(loginController.getUsername(), newEmail);
+        loginController.setEmail(newEmail);
         FacesContext.getCurrentInstance().getExternalContext().redirect("profile.xhtml");
     }
 
@@ -66,6 +69,14 @@ public class ProfileBean {
         this.newPassword = newPassword;
     }
 
+    public String getLastPassword() {
+        return lastPassword;
+    }
+
+    public void setLastPassword(String lastPassword) {
+        this.lastPassword = lastPassword;
+    }
+
     public String getNewEmail() {
         return newEmail;
     }
@@ -74,11 +85,11 @@ public class ProfileBean {
         this.newEmail = newEmail;
     }
 
-    public LoginController getLoginController() {
+    public LoginBean getLoginController() {
         return loginController;
     }
 
-    public void setLoginController(LoginController loginController) {
+    public void setLoginController(LoginBean loginController) {
         this.loginController = loginController;
     }
 }

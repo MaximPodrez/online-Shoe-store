@@ -3,12 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/src/java/com/query/DataQuery.java</file>
-            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/web/profile.xhtml</file>
-            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/src/java/beans/ProfileBean.java</file>
+            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/web/catalog.xhtml</file>
+            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/src/java/beans/CommentBean.java</file>
+            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/src/java/beans/BasketBean.java</file>
+            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/src/java/com/query/MainPaigeEJB.java</file>
+            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/src/java/beans/CatalogBean.java</file>
             <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/src/java/com/query/CatalogEJB.java</file>
-            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/src/java/beans/LoginController.java</file>
-            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/web/resources/css/main-style.css</file>
+            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/web/mainPaige.xhtml</file>
+            <file>file:/home/maxim/University%204th%20semestre/Up(JPA)/ShoesShop/src/java/com/query/CommentEJB.java</file>
         </group>
     </open-files>
 </project-private>

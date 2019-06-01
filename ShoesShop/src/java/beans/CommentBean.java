@@ -28,7 +28,7 @@ public class CommentBean {
     private String comment;
     private List<Comment> comments;
     @ManagedProperty(value = "#{login}")
-    LoginController loginController;
+    LoginBean loginController;
     @EJB
     private CommentEJB commentEJB;
      
@@ -48,11 +48,11 @@ public class CommentBean {
         }
     }
     
-    public LoginController getLoginController() {
+    public LoginBean getLoginController() {
         return loginController;
     }
 
-    public void setLoginController(LoginController loginController) {
+    public void setLoginController(LoginBean loginController) {
         this.loginController = loginController;
     }
 

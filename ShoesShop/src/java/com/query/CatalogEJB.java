@@ -15,7 +15,6 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /**
  *
@@ -82,15 +81,8 @@ public class CatalogEJB {
             order.setProduct(product);
             
             //em.persist(order);
-             log.getOrderCollection().add(order);
+            log.getOrderCollection().add(order);
             
         }
-    }
-    
-    public void update(Product product, String username)
-    {
-        Login log = em.createNamedQuery("Login.findByUsername", Login.class).setParameter("username", username).getSingleResult();
-        Orderok order = em.createNamedQuery("Orderok.findByProduct", Orderok.class).setParameter("product", product).getSingleResult();
-        log.getOrderCollection().add(order);
     }
 }

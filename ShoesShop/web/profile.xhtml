@@ -69,8 +69,15 @@
                     </tr>
                 </table>
                 <tr><font style="font-size: 20px;">
-                        <b>You can change your email:</b> <p:inputText value="#{profile.newEmail}"/>
-                        <p:commandButton value="Change" id="ajax" update="growl" action="#{profile.changeEmail}" styleClass="ui-priority-primary" />
+                        <b>You can change your email:</b>
+                        <p style="font-style: italic;">Input your Email: <p:inputText value="#{profile.newEmail}"/>
+                        <p:commandButton value="Change" id="ajax" update="growl" action="#{profile.changeEmail}" styleClass="ui-priority-primary" /></p>
+                        <b>You can change your password:</b><br/> 
+                        <p style="font-style: italic;">Input your password: 
+                        <p:password value="#{profile.lastPassword}"/></p>
+                        <p style="font-style: italic;">Input new password 
+                        <p:password value="#{profile.newPassword}"/>
+                        <p:commandButton value="Change" update="growl" action="#{profile.changePassword}" styleClass="ui-priority-primary" /></p>
                     </font></tr>
             </h:form>
 

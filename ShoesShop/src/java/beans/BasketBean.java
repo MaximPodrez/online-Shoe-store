@@ -29,7 +29,7 @@ public class BasketBean {
     private List<Product> products;
     private Product selectedProduct;
     @ManagedProperty(value = "#{login}")
-    LoginController loginController;
+    LoginBean loginController;
     @EJB
     private CatalogEJB catalogEJB;
      
@@ -68,11 +68,11 @@ public class BasketBean {
         this.selectedProduct = selectedProduct;
     }
 
-    public LoginController getLoginController() {
+    public LoginBean getLoginController() {
         return loginController;
     }
 
-    public void setLoginController(LoginController loginController) {
+    public void setLoginController(LoginBean loginController) {
         this.loginController = loginController;
     }
 }

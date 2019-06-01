@@ -13,22 +13,22 @@
             <p:growl id="growl" showDetail="true" sticky="true" />
             <p>
                 <label class = "registr">Enter username:</label>
-                <h:inputText id="login" value="#{login.username}"/>
+                <h:inputText id="login" value="#{registration.username}"/>
             </p>
            
             <p>
                 <label class = "registr">e-mail:</label>
-                <h:inputText id="email" value="#{login.email}"/>
+                <h:inputText id="email" value="#{registration.email}"/>
             </p>
             
             <p>
                 <label class = "registr">Enter password:</label>
-                <p:password id="feedback" value="#{login.password}" feedback = "true"/>
+                <p:password id="feedback" value="#{registration.password}" feedback = "true"/>
             </p>
             
             <p>
                 <label class = "registr">Enter password again:</label>
-                <h:inputSecret id="password1" value="#{login.password1}"/>
+                <h:inputSecret id="password1" value="#{registration.password1}"/>
             </p>
 
             <style>
@@ -41,7 +41,7 @@
                 
                 <div class = "center">
                     
-                    <p:commandButton value="OK" id="ajax" update="growl" action="#{login.registrat}" style="margin-right:20px;" styleClass="ui-priority-primary" />
+                    <p:commandButton value="OK" id="ajax" update="growl" action="#{registration.registrat}" style="margin-right:20px;" styleClass="ui-priority-primary" />
                 </div>
             </p>
         </h:form>

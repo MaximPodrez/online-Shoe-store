@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -30,13 +29,13 @@ public class CatalogBean {
     private List<Product> products;
     private Product selectedProduct;
     @ManagedProperty(value = "#{login}")
-    LoginController loginController;
+    LoginBean loginController;
 
-    public LoginController getLoginController() {
+    public LoginBean getLoginController() {
         return loginController;
     }
 
-    public void setLoginController(LoginController loginController) {
+    public void setLoginController(LoginBean loginController) {
         this.loginController = loginController;
     }
     @EJB

@@ -7,11 +7,10 @@
 package com.query;
 
 import com.entity.Login;
-import com.entity.Product;
-import java.util.ArrayList;
-import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -31,10 +30,21 @@ public class ProfileEJB {
         l.setUsername(newUsername);
     }
     
-    public void changePassword(String username, String newPassword)
+    public boolean changePassword(String username, String lastPassword, String newPassword)
     {
+        if(newPassword.equals(""))
+        {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalidate new password!\nTry again."));
+            return false;
+        }
         Login l = em.createNamedQuery("Login.findByUsername", Login.class).setParameter("username", username).getSingleResult();
-        l.setPassword(newPassword);
+        if(l.getPassword().equals(lastPassword))
+        {
+            l.setPassword(newPassword);
+            return true;
+        }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Wrong password!"));
+        return false;
     }
     
     public void changeEmail(String username, String email)

@@ -8,6 +8,7 @@ package com.query;
 
 import com.entity.Product;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -30,8 +31,9 @@ public class MainPaigeEJB {
        Product product = new Product();
        List<Product> k = em.createNamedQuery("Product.findAll", Product.class).getResultList();
        List<String> list = new ArrayList();
-       for(int i = 0; i < k.size(); i++)
-           list.add(k.get(i).getPhoto());
+       for (Product k1 : k) {
+            list.add(k1.getPhoto());
+        }
        return list;
     }
 }

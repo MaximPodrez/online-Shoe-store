@@ -6,52 +6,39 @@
 
 package beans;
 
-import com.query.DataQuery;
+import com.query.UserDataEJB;
 import java.io.IOException;
-import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 /**
  *
  * @author maxim
  */
-@ManagedBean(name = "login")
-@SessionScoped
-public class LoginController implements Serializable {
-
+@ManagedBean(name = "registration")
+@ViewScoped
+public class RegistrationBean {
+    @ManagedProperty(value = "#{login}")
+    LoginBean loginController;
+    @EJB
+    UserDataEJB query;
     private String username;
     private String password;
     private String password1;
     private String email;
-    @EJB
-    private DataQuery query=new DataQuery();
-    
-    public void loginControl() throws IOException
-    {
-        if(query.loginControl(username, password))
-        {
-            email = query.email(username);
-            FacesContext.getCurrentInstance().getExternalContext().redirect("mainPaige.xhtml");
-        }
-    }
     
     public void registrat() throws IOException
     {
         if(query.registrControl(username, password, password1, email))
-            FacesContext.getCurrentInstance().getExternalContext().redirect("profile.xhtml");
-    }
-    
-    public String eml()
-    {
-        return query.email(username);
-    }
-    
-    public String registration()
-    {
-        return "registration.xhtml?faces-redirect=true";
+        {
+            loginController.setUsername(username);
+            loginController.setPassword(password);
+            loginController.setEmail(email);
+            FacesContext.getCurrentInstance().getExternalContext().redirect("mainPaige.xhtml");
+        }
     }
 
     public String getUsername() {
@@ -70,19 +57,30 @@ public class LoginController implements Serializable {
         this.password = password;
     }
 
+    public String getPassword1() {
+        return password1;
+    }
+
     public void setPassword1(String password1) {
         this.password1 = password1;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
     
-    public String getPassword1() {
-        return password1;
+    
+
+    public LoginBean getLoginController() {
+        return loginController;
     }
 
-    public String getEmail() {
-        return email;
+    public void setLoginController(LoginBean loginController) {
+        this.loginController = loginController;
     }
 }
+
